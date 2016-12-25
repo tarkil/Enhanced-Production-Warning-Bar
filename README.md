@@ -1,5 +1,5 @@
-Enhanced Production Warning Bar
-===============================
+Enhanced Production Warning Bar [![Build Status](https://travis-ci.org/tarkil/Enhanced-Production-Warning-Bar.svg?branch=master)](https://travis-ci.org/tarkil/Enhanced-Production-Warning-Bar)
+====================================================================================================================
 
 A chrome extension to overlay a warning bar when the use is on a productions site. This is to be a constant reminder to be careful with the data on the site.
 

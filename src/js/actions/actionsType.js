@@ -103,9 +103,3 @@ export function loadEnvironment(properties) {
         preferences: properties
     };
 }
-
-export function toggleEasterEgg() {
-    return {
-        type: "TOGGLE_EASTER_EGG"
-    };
-}

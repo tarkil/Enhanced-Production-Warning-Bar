@@ -29,5 +29,5 @@
           "48": "img/48/factory.png",
           "128": "img/128/factory.png" 
         },
-  "web_accessible_resources": ["img/svg/*.svg", "img/128/factory.png"]
+  "web_accessible_resources": ["img/svg/*.svg"]
 }

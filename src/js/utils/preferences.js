@@ -42,8 +42,7 @@ class PreferencesManager {
             barText: 'In Production Environment',
             enableWarningModal: true,
             filter: 'none',
-            domainList: [],
-            easterEgg: false
+            domainList: []
         };
         return values;
     }

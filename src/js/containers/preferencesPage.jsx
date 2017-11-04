@@ -136,13 +136,6 @@ class Preferences extends React.Component {
                     <ModalPreferences />
                     <WebFilterPreferences />
                     <DomainListContainer />
-<<<<<<< HEAD
-                    <Konami easterEgg={ () => {
-                            this.props.enableEasterEgg();
-                            }
-                        } konami={ [38, 38, 40, 40, 37, 39, 37, 39, 66, 65] } resetDelay={ 2000 }/>
-=======
->>>>>>> parent of 719bbaa... Merge pull request #23 from tarkil/easteregg
                 </StickyContainer>
                 <Drawer open={ this.state.showDrawer } >
                     <AppBar title="Environments"

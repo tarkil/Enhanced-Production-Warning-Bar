@@ -29,7 +29,7 @@ To configure it, go to [extensions](chrome://extensions/), and press _Options_ u
 Acknowledgments
 ===============
 
-This project is a fork of [production warning bar](https://github.com/ericvpeters/production-warning-bar)that includes some new features: such as modal that blocks the whole page.
+This project is a fork of [production warning bar](https://github.com/ericvpeters/production-warning-bar) that includes some new features: such as modal that blocks the whole page.
 
 You can install the original extension from  [Chrome store](https://chrome.google.com/webstore/detail/jdgjpoeggllpkbdjpfipmcifjgjeblpe/publish-delayed?hl=en&gl=US)
 

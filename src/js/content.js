@@ -5,6 +5,7 @@ import WarningBar from './components/warningBar.jsx';
 import WarningModal from './components/warningModal.jsx'
 import injectTapEventPlugin from 'react-tap-event-plugin';
 import PreferencesManager from './utils/preferences.js'
+import Url from './model/Url'
 
 injectTapEventPlugin();
 
@@ -44,13 +45,8 @@ class Content {
         
         for (var key in items.domainList) {
             let domain = items.domainList[key];
-            //replace * with javascript regular expression equivalent
-            domain = domain.replace("*", "[A-z0-9]*");
-            let regex = new RegExp("^" + domain + "$");
-            //check if current domain matches regular expression. noMatch varialble ensures that the bar
-            //is only added once
-
-            if (document.domain.search(regex) >= 0 && noMatch) {
+            const url = new Url(document.location);
+            if (url.isFromDomain(domain) && noMatch) {
                 if (items.enableWarningBar) {
                     let blankSpace = Content.createHTMLElement('<div id="production-warning-blank-space"/>');
                     document.body.insertBefore(blankSpace, document.body.firstChild);
@@ -78,6 +74,7 @@ class Content {
                 if (items.enableWarningModal) {
                     let warningModalElement = Content.createHTMLElement('<div id="production-warning-modal" />');
                     document.body.appendChild(warningModalElement);
+                    warningModalElement = document.getElementById('production-warning-modal');
                     ReactDOM.render(
                         <MuiThemeProvider>
                             <WarningModal />

@@ -1,7 +1,9 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Toggle from 'material-ui/Toggle';
 import TextField from 'material-ui/TextField';
 import { Card, CardHeader, CardText, CardActions } from 'material-ui/Card';
+
 
 import ColorPicker from './colorPicker.jsx';
 import WarningBar from './warningBar.jsx';
@@ -74,12 +76,12 @@ class WarningBarOptions extends React.Component {
 }
 
  WarningBarOptions.propTypes = {
-     onMessageChange: React.PropTypes.func,
-     onColorChange: React.PropTypes.func,
-     barColor: React.PropTypes.string,
-     warningMessage: React.PropTypes.string,
-     enable: React.PropTypes.bool,
-     onBarEnable: React.PropTypes.func
+     onMessageChange: PropTypes.func,
+     onColorChange: PropTypes.func,
+     barColor: PropTypes.string,
+     warningMessage: PropTypes.string,
+     enable: PropTypes.bool,
+     onBarEnable: PropTypes.func
  };
 
 WarningBarOptions.defaultProps = {

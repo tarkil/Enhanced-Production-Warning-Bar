@@ -11,7 +11,8 @@
     "redux": "~3.7.2",
     "material-ui": "~0.19.4",
     "react-sticky": "~6.0.1",
-    "react-intl": "~2.4.0"
+    "react-intl": "~2.4.0",
+    "prop-types": "~15.6.0"
   },
   "devDependencies": {
     "babel-jest": "~21.2.0",
@@ -27,7 +28,9 @@
     "react-addons-test-utils": "~15.6.2",
     "enzyme-to-json": "~3.2.1",
     "babel-plugin-react-intl": "~2.3.1",
-    "eslint-plugin-json": "~1.2.0"
+    "eslint-plugin-json": "~1.2.0",
+    "jsdoc": "~3.5.5",
+    "docdash": "~0.4.0"
   },
   "scripts": {
     "test": "jest test/**/*.js",
@@ -36,7 +39,8 @@
     "watch": "./script/watch.sh",
     "build": "./script/build.sh",
     "production": "./script/production.sh",
-    "package": "npm run eslint && npm test && npm run production && zip package-$(cat package.json | jq -r .version).zip -r build html css img manifest.json"
+    "package": "npm run eslint && npm test && npm run production && zip package-$(cat package.json | jq -r .version).zip -r build html css img manifest.json",
+    "doc":  "node_modules/.bin/jsdoc -c jsdoc.json"
   },
   "repository": {
     "type": "git",

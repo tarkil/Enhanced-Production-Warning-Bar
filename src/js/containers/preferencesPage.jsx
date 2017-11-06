@@ -21,6 +21,7 @@ import DomainListContainer from '../containers/domainListContainer.jsx';
 import ModalPreferences from '../containers/modalPreferences.jsx';
 import WebFilterPreferences from '../containers/webFilterPreferences.jsx';
 import { FormattedMessage } from 'react-intl';
+import PropTypes from 'prop-types';
 
 import { savePreferences, addEnvironment, removeEnvironment, changeEnvironment } from '../actions/actionsType'
 
@@ -103,7 +104,8 @@ class Preferences extends React.Component {
             <div>
                 <StickyContainer>
                     <Sticky stickyStyle={ stickyStyle }>
-                        <AppBar title={ <FormattedMessage
+                       { () =>
+                       <AppBar title={ <FormattedMessage
                                         id="preferencesPage.title"
                                         defaultMessage="Enhanced Production Warning Bar Preferences - {name}"
                                         description="This translation is created inline of the code"
@@ -131,6 +133,7 @@ class Preferences extends React.Component {
                                                 <NavigationMenu/>
                                                </IconButton> }
                         />
+                     }
                     </Sticky>
                     <WarningBarPreferences />
                     <ModalPreferences />
@@ -178,10 +181,10 @@ class Preferences extends React.Component {
 }
 
 Preferences.propTypes = {
-    onSaveClick: React.PropTypes.func.isRequired,
-    onNewEnvironment: React.PropTypes.func.isRequired,
-    environments: React.PropTypes.array.isRequired,
-    currentEnvironment: React.PropTypes.string.isRequired
+    onSaveClick: PropTypes.func.isRequired,
+    onNewEnvironment: PropTypes.func.isRequired,
+    environments: PropTypes.array.isRequired,
+    currentEnvironment: PropTypes.string.isRequired
 };
 
 const mapStateToProps = (state) => ({

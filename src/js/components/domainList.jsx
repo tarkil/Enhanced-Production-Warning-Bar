@@ -12,6 +12,7 @@ import ContentAdd from 'material-ui/svg-icons/content/add';
 import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
 import TextField from 'material-ui/TextField';
+import PropTypes from 'prop-types';
 
 class DomainList extends React.Component {
 
@@ -145,10 +146,10 @@ class DomainList extends React.Component {
 
 
 DomainList.propTypes = {
-    onAddDomain: React.PropTypes.func.isRequired,
-    onModifyDomain: React.PropTypes.func.isRequired,
-    onRemoveDomain: React.PropTypes.func.isRequired,
-    domainList: React.PropTypes.array.isRequired
+    onAddDomain: PropTypes.func.isRequired,
+    onModifyDomain: PropTypes.func.isRequired,
+    onRemoveDomain: PropTypes.func.isRequired,
+    domainList: PropTypes.array.isRequired
 };
 
 DomainList.defaultProps = {

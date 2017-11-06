@@ -1,5 +1,5 @@
-import ExtendedUrl from '../../src/js/model/extendedUrl'
-describe('ExtendedUrl', () => {
+import Url from '../../src/js/model/Url'
+describe('Url', () => {
     const testCases = [
         {
             url: "http://www.tarkil.com",
@@ -35,7 +35,7 @@ describe('ExtendedUrl', () => {
     ];
     testCases.forEach(function (testCase) {
         it(`Should ${!!testCase.isFromDomain ? "": "not"} be from domain when url is ${testCase.url} and domain expresion is ${testCase.domainExpression} `, () => {
-            const url = new ExtendedUrl(testCase.url);
+            const url = new Url(testCase.url);
             expect(url.isFromDomain(testCase.domainExpression)).toEqual(testCase.isFromDomain);
         });
       });

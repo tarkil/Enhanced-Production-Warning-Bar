@@ -14,7 +14,8 @@
     "react-intl": "~2.4.0",
     "prop-types": "~15.6.0",
     "semantic-ui-css": "~2.2.12",
-    "semantic-ui-react": "~0.76.0"
+    "semantic-ui-react": "~0.76.0",
+    "react-shadow": "~16.1.0"
   },
   "devDependencies": {
     "jest": "~21.2.1",
@@ -42,7 +43,7 @@
     "test": "jest test/**/*.js",
     "eslint": "./node_modules/.bin/eslint src/js/**/*.js*",
     "eslint-fix": "./node_modules/.bin/eslint --fix src/js/**/*.js*",
-    "watch": "./script/watch.sh",
+    "watch": "./node_modules/.bin/webpack --config webpack.config.js --watch",
     "build": " ./node_modules/.bin/webpack --config webpack.config.js",
     "production": "./script/production.sh",
     "package": "npm run eslint && npm test && npm run production && zip package-$(cat package.json | jq -r .version).zip -r build html css img manifest.json",

@@ -8,9 +8,8 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import PreferencesPage from './containers/preferencesPage.jsx';
 
 import optionsReducer from './reducer/optionsReducer';
-import { loadPreferences } from './actions/actionsType';
+import { loadPreferences, loadEnvironmentPreferences } from './actions/actionsType';
 import PreferencesManager from './utils/preferences.js';
-import { loadEnvironmentPreferences } from './actions/actionsType';
 import { IntlProvider, addLocaleData } from 'react-intl';
 import es from 'react-intl/locale-data/es';
 import en from 'react-intl/locale-data/en';
@@ -40,7 +39,7 @@ store.subscribe(() => {
     }
 });
 
-PreferencesManager.INSTANCE().loadPreferences(items => store.dispatch(loadPreferences(items)));
+PreferencesManager.INSTANCE().loadPreferences((items) => store.dispatch(loadPreferences(items)));
 
 class Application extends React.Component {
     render() {

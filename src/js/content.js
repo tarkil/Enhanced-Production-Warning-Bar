@@ -4,8 +4,14 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import WarningBar from './components/warningBar.jsx';
 import WarningModal from './components/warningModal.jsx'
 import injectTapEventPlugin from 'react-tap-event-plugin';
+<<<<<<< eb408d7e2d5121a27c83e61ac86db275cdd2863d
 import PreferencesManager from './utils/preferences.js'
 import Url from './model/Url'
+=======
+import PreferencesManager from './utils/preferences.js';
+import ShadowDOM from 'react-shadow';
+import 'semantic-ui-css/semantic.min.css';
+>>>>>>> Issue #23 move warning modal to semantic ui react
 
 injectTapEventPlugin();
 
@@ -14,7 +20,7 @@ let instance = null;
 class Content {
 
     constructor() {
-        if(!instance){
+        if (!instance) {
             instance = this;
             this.find = false;
         }
@@ -27,9 +33,8 @@ class Content {
             for (let key in items.environments) {
                 var environment = items.environments[key];
                 if (!this.found) {
-                    PreferencesManager.INSTANCE().loadEnvironment(environment, (items) =>
-                    {
-                        this.loadWarningComponents(items);
+                    PreferencesManager.INSTANCE().loadEnvironment(environment, (elements) => {
+                        this.loadWarningComponents(elements);
                     });
                 }
             }
@@ -42,7 +47,6 @@ class Content {
         var noMatch = true;
 
         //loop through domains and see if current domain is part of list
-        
         for (var key in items.domainList) {
             let domain = items.domainList[key];
             const url = new Url(document.location);
@@ -64,21 +68,50 @@ class Content {
 
                     ReactDOM.render(
                         <MuiThemeProvider>
-                            <WarningBar title={ items.barText } style={ barStyle } onClose={() => {
+                            <WarningBar title={items.barText} style={barStyle} onClose={() => {
                                 document.getElementById('production-warning-blank-space').setAttribute('style', `height: 0px`);
-                            }}/>
+                            }} />
                         </MuiThemeProvider>, productionWarningBar);
                     document.getElementById('production-warning-blank-space').setAttribute('style', `height: ${productionWarningBar.clientHeight}px`);
                 }
 
                 if (items.enableWarningModal) {
+<<<<<<< eb408d7e2d5121a27c83e61ac86db275cdd2863d
                     let warningModalElement = Content.createHTMLElement('<div id="production-warning-modal" />');
                     document.body.appendChild(warningModalElement);
                     warningModalElement = document.getElementById('production-warning-modal');
+=======
+                    //Workaround to load icons and fonts http://robdodson.me/at-font-face-doesnt-work-in-shadow-dom/
+                    const eotFont = chrome.extension.getURL('build/js/674f50d287a8c48dc19ba404d20fe713.eot');
+                    const ttfFont = chrome.extension.getURL('build/js/b06871f281fee6b241d60582ae9369b9.ttf');
+                    const svgFont = chrome.extension.getURL('build/js/912ec66d7572ff821749319396470bde.svg');
+
+                    var newStyle = document.createElement('style');
+                    newStyle.appendChild(document.createTextNode(`
+                    @font-face {
+                        font-family: 'Icons';
+                        src: url("${eotFont}");
+                        src: url("${eotFont}?#iefix") format('embedded-opentype'), url("${ttfFont}") format('truetype'), url("${svgFont}#icons") format('svg');
+                        font-style: normal;
+                        font-weight: normal;
+                        font-variant: normal;
+                        text-decoration: inherit;
+                        text-transform: none;
+                      }
+                    `));
+
+                    document.head.appendChild(newStyle);
+                    //--
+                    let container = Content.createHTMLElement('<div id="warning-modal-container"/>');
+                    document.body.appendChild(container);
+                    container = document.getElementById('warning-modal-container');
+>>>>>>> Issue #23 move warning modal to semantic ui react
                     ReactDOM.render(
-                        <MuiThemeProvider>
-                            <WarningModal />
-                        </MuiThemeProvider>, warningModalElement);
+                        <ShadowDOM include={[chrome.extension.getURL('build/js/styles.css')]}>
+                            <div id="warning-modal">
+                                <WarningModal />
+                            </div>
+                        </ShadowDOM>, container);
                 }
 
                 if (items.filter !== "none") {

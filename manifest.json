@@ -6,28 +6,38 @@
     "page": "html/options.html",
     "open_in_tab": true
   },
-
   "permissions": [
-        "storage", "tabs"
-    ],
-    "content_scripts": [
-        {
-            "matches": ["http://*/*", "https://*/*"],
-            "js": ["build/js/content.js"],
-            "css": ["css/modal.css"]
-        }
-    ],
-    "browser_action": {
-      "default_icon": {
-        "19": "img/19/factory.png",
-        "38": "img/38/factory.png"
-      },
-      "default_popup": "html/options.html"
+    "storage",
+    "tabs"
+  ],
+  "content_scripts": [
+    {
+      "matches": [
+        "http://*/*",
+        "https://*/*"
+      ],
+      "js": [
+        "build/js/content.js"
+      ]
+    }
+  ],
+  "browser_action": {
+    "default_icon": {
+      "19": "img/19/factory.png",
+      "38": "img/38/factory.png"
     },
-    "icons": {
-          "16": "img/16/factory.png",
-          "48": "img/48/factory.png",
-          "128": "img/128/factory.png" 
-        },
-  "web_accessible_resources": ["img/svg/*.svg"]
+    "default_popup": "html/options.html"
+  },
+  "icons": {
+    "16": "img/16/factory.png",
+    "48": "img/48/factory.png",
+    "128": "img/128/factory.png"
+  },
+  "web_accessible_resources": [
+    "img/svg/*.svg",
+    "build/js/*svg",
+    "build/js/*ttf",
+    "build/js/*.eot",
+    "build/js/styles.css"
+  ]
 }

@@ -3,9 +3,9 @@
   "version": "0.1.2",
   "description": "A chrome extension that detects production pages",
   "dependencies": {
-    "react": "~16.0.0",
+    "react": "~16.1.1",
     "react-color": "~2.13.8",
-    "react-dom": "~16.0.0",
+    "react-dom": "~16.1.1",
     "react-redux": "~5.0.6",
     "react-tap-event-plugin": "~3.0.2",
     "redux": "~3.7.2",
@@ -36,6 +36,9 @@
     "extract-text-webpack-plugin": "~3.0.2",
     "eslint-plugin-react": "~7.4.0",
     "babel-plugin-react-intl": "~2.3.1",
+    "react-test-renderer": "~16.1.1",
+    "enzyme": "~3.2.0",
+    "enzyme-adapter-react-16": "~1.1.0",
     "jsdoc": "~3.5.5",
     "docdash": "~0.4.0"
   },
@@ -63,5 +66,11 @@
   "bugs": {
     "url": "https://github.com/tarkil/production-warning-bar/issues"
   },
-  "homepage": "https://github.com/tarkil/production-warning-bar#readme"
+  "homepage": "https://github.com/tarkil/production-warning-bar#readme",
+  "jest": {
+    "setupFiles": [
+      "<rootDir>/test/shim.js",
+      "<rootDir>/test/enzyme-setup.js"
+    ]
+  }
 }

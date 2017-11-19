@@ -4,14 +4,11 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import WarningBar from './components/warningBar.jsx';
 import WarningModal from './components/warningModal.jsx'
 import injectTapEventPlugin from 'react-tap-event-plugin';
-<<<<<<< eb408d7e2d5121a27c83e61ac86db275cdd2863d
-import PreferencesManager from './utils/preferences.js'
+
 import Url from './model/Url'
-=======
 import PreferencesManager from './utils/preferences.js';
 import ShadowDOM from 'react-shadow';
 import 'semantic-ui-css/semantic.min.css';
->>>>>>> Issue #23 move warning modal to semantic ui react
 
 injectTapEventPlugin();
 
@@ -76,11 +73,6 @@ class Content {
                 }
 
                 if (items.enableWarningModal) {
-<<<<<<< eb408d7e2d5121a27c83e61ac86db275cdd2863d
-                    let warningModalElement = Content.createHTMLElement('<div id="production-warning-modal" />');
-                    document.body.appendChild(warningModalElement);
-                    warningModalElement = document.getElementById('production-warning-modal');
-=======
                     //Workaround to load icons and fonts http://robdodson.me/at-font-face-doesnt-work-in-shadow-dom/
                     const eotFont = chrome.extension.getURL('build/js/674f50d287a8c48dc19ba404d20fe713.eot');
                     const ttfFont = chrome.extension.getURL('build/js/b06871f281fee6b241d60582ae9369b9.ttf');
@@ -105,7 +97,6 @@ class Content {
                     let container = Content.createHTMLElement('<div id="warning-modal-container"/>');
                     document.body.appendChild(container);
                     container = document.getElementById('warning-modal-container');
->>>>>>> Issue #23 move warning modal to semantic ui react
                     ReactDOM.render(
                         <ShadowDOM include={[chrome.extension.getURL('build/js/styles.css')]}>
                             <div id="warning-modal">

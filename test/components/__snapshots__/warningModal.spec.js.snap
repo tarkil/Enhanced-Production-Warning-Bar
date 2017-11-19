@@ -1,0 +1,121 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`WarningModal Modal is rendered correctly when it is created and continue buttom is clicked 1`] = `
+<div
+  className="ui active transition visible dimmer"
+  onClick={[Function]}
+>
+  <div
+    className="content"
+  >
+    <div
+      className="center"
+    >
+      <h2
+        className="ui icon inverted header"
+      >
+        <i
+          aria-hidden="true"
+          className="industry icon"
+        />
+        Your are in production!
+        <div
+          className="sub header"
+        >
+          Your actions may break the system. Be careful!
+        </div>
+      </h2>
+      <div
+        className="ui container"
+      >
+        <button
+          className="ui red basic inverted button"
+          disabled={undefined}
+          onClick={[Function]}
+          role="button"
+          tabIndex={undefined}
+        >
+          <i
+            aria-hidden="true"
+            className="remove icon"
+          />
+          Go safe
+        </button>
+        <button
+          className="ui green icon inverted right labeled button"
+          disabled={undefined}
+          onClick={[Function]}
+          role="button"
+          tabIndex={undefined}
+        >
+          <i
+            aria-hidden="true"
+            className="chevron right icon"
+          />
+          Continue
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`WarningModal Modal is rendered correctly when it is created and continue buttom is clicked 2`] = `
+<div
+  className="ui dimmer"
+  onClick={[Function]}
+>
+  <div
+    className="content"
+  >
+    <div
+      className="center"
+    >
+      <h2
+        className="ui icon inverted header"
+      >
+        <i
+          aria-hidden="true"
+          className="industry icon"
+        />
+        Your are in production!
+        <div
+          className="sub header"
+        >
+          Your actions may break the system. Be careful!
+        </div>
+      </h2>
+      <div
+        className="ui container"
+      >
+        <button
+          className="ui red basic inverted button"
+          disabled={undefined}
+          onClick={[Function]}
+          role="button"
+          tabIndex={undefined}
+        >
+          <i
+            aria-hidden="true"
+            className="remove icon"
+          />
+          Go safe
+        </button>
+        <button
+          className="ui green icon inverted right labeled button"
+          disabled={undefined}
+          onClick={[Function]}
+          role="button"
+          tabIndex={undefined}
+        >
+          <i
+            aria-hidden="true"
+            className="chevron right icon"
+          />
+          Continue
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+`;

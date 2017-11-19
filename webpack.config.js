@@ -9,7 +9,7 @@ const BUILD_DIR = path.resolve(__dirname, 'src/client/public');
 const APP_DIR = path.resolve(__dirname, 'src/client/app');
 
 const config = {
-  entry: { 
+  entry: {
     content: path.resolve(__dirname, './src/js/content.js'),
     'application-bundle': path.resolve(__dirname, './src/js/application.jsx')
   },
@@ -44,6 +44,10 @@ const config = {
             limit: 100000,
           },
         },
+      },
+      {
+        test: /\.(svg|eot|ttf|woff|woff2)$/,
+        loader: 'file-loader?name=[name].[ext]'
       },
       {
         test: /\.css$/,

@@ -1,21 +1,26 @@
 import React from 'react';
 import { Button, Header, Icon, Dimmer, Container } from 'semantic-ui-react'
 import ScrollController from '../utils/scrollController.js'
+import PropTypes from 'prop-types';
+
 
 class WarningModal extends React.Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.state = { active: true };
-        ScrollController.disableScroll();
+        this.props.onShow();
     }
+
     handleOpen() {
         this.setState({ active: true });
-        ScrollController.disableScroll();
+        this.props.onShow();
     }
+
     handleClose() {
         this.setState({ active: false });
-        ScrollController.enableScroll();
+        this.props.onContinue();
     }
+
     render() {
         return <Dimmer active={this.state.active}>
             <Header as="h2" icon inverted>
@@ -27,7 +32,7 @@ class WarningModal extends React.Component {
             </Header>
             <Container>
                 <Button content="Go safe" icon="remove" basic color="red" inverted onClick={() => {
-                    history.go(-1);
+                    this.props.onExit();
                 }} />
                 <Button content="Continue" color="green" icon="chevron right" labelPosition="right" inverted onClick={() => {
                     this.handleClose();
@@ -36,5 +41,23 @@ class WarningModal extends React.Component {
         </Dimmer>
     }
 }
+
+WarningModal.propTypes = {
+    onContinue: PropTypes.func,
+    onExit: PropTypes.func,
+    onShow: PropTypes.func
+};
+
+WarningModal.defaultProps = {
+    onContinue: () => {
+        ScrollController.enableScroll();
+    },
+    onExit: () => {
+        history.go(-1);
+    },
+    onShow: () => {
+        ScrollController.disableScroll();
+    }
+};
 
 export default WarningModal;

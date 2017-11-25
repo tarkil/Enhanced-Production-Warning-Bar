@@ -45,9 +45,11 @@ class ScrollController {
         document.onkeydown = this.preventDefaultForScrollKeys;
         //Disable browser scrollbars
         this.scrollPreviousConfigForChromeAndFirefox = document.documentElement.style.overflow;
-        document.documentElement.style.overflow = 'hidden';  // firefox, chrome
+        document.documentElement.style.overflow = 'hidden'; // firefox, chrome
         document.body.scroll = "no"; // ie only
         this.scrollEnable = false;
+        //Scroll page to the top left
+        window.scrollTo(0, 0);
     }
 
     enableScroll() {
@@ -62,7 +64,7 @@ class ScrollController {
         window.ontouchmove = null;
         document.onkeydown = null;
         //Enable browser scrollbars
-        document.documentElement.style.overflow = this.scrollPreviousConfigForChromeAndFirefox;  // firefox, chrome
+        document.documentElement.style.overflow = this.scrollPreviousConfigForChromeAndFirefox; // firefox, chrome
         document.body.scroll = "yes"; // ie only
         this.scrollEnable = true;
     }

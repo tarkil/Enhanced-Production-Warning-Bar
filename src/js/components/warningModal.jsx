@@ -3,8 +3,16 @@ import { Button, Header, Icon, Dimmer, Container } from 'semantic-ui-react'
 import ScrollController from '../utils/scrollController.js'
 import PropTypes from 'prop-types';
 
-
+/**
+ * A modal that blocks user interaction with the page
+ * @namespace
+ */
 class WarningModal extends React.Component {
+
+    /**
+     * Create and display a new WarningModal
+     * @param {*} props properties supported by this component
+     */
     constructor(props) {
         super(props);
         this.state = { active: true };
@@ -43,8 +51,26 @@ class WarningModal extends React.Component {
 }
 
 WarningModal.propTypes = {
+
+    /**
+     * @property {function} onContinue The action to perform if the user decides to interact with the page.
+     * The default action enables scrolling.
+     * @memberof WarningModal
+     */
     onContinue: PropTypes.func,
+
+    /**
+     * @property {function} onExit The action to perform if the user decides to leave the page.
+     * The default action is to go to the previous page.
+     * @memberof WarningModal
+     */
     onExit: PropTypes.func,
+
+    /**
+     * @property {function} onShow The action to perform when the modal is displayed.
+     * The default action is to disable scrolling.
+     * @memberof WarningModal
+     */
     onShow: PropTypes.func
 };
 

@@ -4,7 +4,7 @@
     },
     "source": {
         "include": "src/js",
-        "includePattern": ".js$",
+        "includePattern": ".js(x)?$",
         "excludePattern": "(node_modules/|docs)"
     },
     "plugins": [
@@ -22,7 +22,7 @@
         "monospaceLinks": false
     },
     "docdash": {
-        "static": true,  // Display the static members inside the navbar
-        "sort": true     // Sort the methods in the navbar
+        "static": true, // Display the static members inside the navbar
+        "sort": true // Sort the methods in the navbar
     }
 }

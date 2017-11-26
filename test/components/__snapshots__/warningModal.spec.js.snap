@@ -18,11 +18,11 @@ exports[`WarningModal Modal is rendered correctly when it is created and continu
           aria-hidden="true"
           className="industry icon"
         />
-        Your are in production!
+        warningModal_title
         <div
           className="sub header"
         >
-          Your actions may break the system. Be careful!
+          warningModal_description
         </div>
       </h2>
       <div
@@ -39,7 +39,7 @@ exports[`WarningModal Modal is rendered correctly when it is created and continu
             aria-hidden="true"
             className="remove icon"
           />
-          Go safe
+          warningModal_exit
         </button>
         <button
           className="ui green icon inverted right labeled button"
@@ -52,7 +52,7 @@ exports[`WarningModal Modal is rendered correctly when it is created and continu
             aria-hidden="true"
             className="chevron right icon"
           />
-          Continue
+          warningModal_continue
         </button>
       </div>
     </div>
@@ -78,11 +78,11 @@ exports[`WarningModal Modal is rendered correctly when it is created and continu
           aria-hidden="true"
           className="industry icon"
         />
-        Your are in production!
+        warningModal_title
         <div
           className="sub header"
         >
-          Your actions may break the system. Be careful!
+          warningModal_description
         </div>
       </h2>
       <div
@@ -99,7 +99,7 @@ exports[`WarningModal Modal is rendered correctly when it is created and continu
             aria-hidden="true"
             className="remove icon"
           />
-          Go safe
+          warningModal_exit
         </button>
         <button
           className="ui green icon inverted right labeled button"
@@ -112,7 +112,7 @@ exports[`WarningModal Modal is rendered correctly when it is created and continu
             aria-hidden="true"
             className="chevron right icon"
           />
-          Continue
+          warningModal_continue
         </button>
       </div>
     </div>
@@ -138,11 +138,11 @@ exports[`WarningModal Modal is rendered correctly when it is created and exit bu
           aria-hidden="true"
           className="industry icon"
         />
-        Your are in production!
+        warningModal_title
         <div
           className="sub header"
         >
-          Your actions may break the system. Be careful!
+          warningModal_description
         </div>
       </h2>
       <div
@@ -159,7 +159,7 @@ exports[`WarningModal Modal is rendered correctly when it is created and exit bu
             aria-hidden="true"
             className="remove icon"
           />
-          Go safe
+          warningModal_exit
         </button>
         <button
           className="ui green icon inverted right labeled button"
@@ -172,7 +172,7 @@ exports[`WarningModal Modal is rendered correctly when it is created and exit bu
             aria-hidden="true"
             className="chevron right icon"
           />
-          Continue
+          warningModal_continue
         </button>
       </div>
     </div>
@@ -198,11 +198,11 @@ exports[`WarningModal Modal is rendered correctly when it is created and exit bu
           aria-hidden="true"
           className="industry icon"
         />
-        Your are in production!
+        warningModal_title
         <div
           className="sub header"
         >
-          Your actions may break the system. Be careful!
+          warningModal_description
         </div>
       </h2>
       <div
@@ -219,7 +219,7 @@ exports[`WarningModal Modal is rendered correctly when it is created and exit bu
             aria-hidden="true"
             className="remove icon"
           />
-          Go safe
+          warningModal_exit
         </button>
         <button
           className="ui green icon inverted right labeled button"
@@ -232,7 +232,7 @@ exports[`WarningModal Modal is rendered correctly when it is created and exit bu
             aria-hidden="true"
             className="chevron right icon"
           />
-          Continue
+          warningModal_continue
         </button>
       </div>
     </div>

@@ -74,9 +74,9 @@ class Content {
 
                 if (items.enableWarningModal) {
                     //Workaround to load icons and fonts http://robdodson.me/at-font-face-doesnt-work-in-shadow-dom/
-                    const eotFont = chrome.extension.getURL('build/js/674f50d287a8c48dc19ba404d20fe713.eot');
-                    const ttfFont = chrome.extension.getURL('build/js/b06871f281fee6b241d60582ae9369b9.ttf');
-                    const svgFont = chrome.extension.getURL('build/js/912ec66d7572ff821749319396470bde.svg');
+                    const eotFont = chrome.extension.getURL('build/js/icons.eot');
+                    const ttfFont = chrome.extension.getURL('build/js/icons.ttf');
+                    const svgFont = chrome.extension.getURL('build/js/icons.svg');
 
                     var newStyle = document.createElement('style');
                     newStyle.appendChild(document.createTextNode(`

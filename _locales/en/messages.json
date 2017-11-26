@@ -1,0 +1,15 @@
+{
+    "warningModal_title": {
+        "message": "Your are in production!",
+        "description": "Warning modal title"
+    },
+    "warningModal_description": {
+        "message": "Your actions may break the system. Be careful!"
+    },
+    "warningModal_continue": {
+        "message": "Continue"
+    },
+    "warningModal_exit": {
+        "message": "Go safe"
+    }
+}

@@ -1,0 +1,14 @@
+{
+    "warningModal_title": {
+        "message": "¡Estás en producción!"
+    },
+    "warningModal_description": {
+        "message": "Tus acciones podrían tener consecuencias no deseadas. ¡Ten cuidado!"
+    },
+    "warningModal_continue": {
+        "message": "Continuar"
+    },
+    "warningModal_exit": {
+        "message": "Huir"
+    }
+}

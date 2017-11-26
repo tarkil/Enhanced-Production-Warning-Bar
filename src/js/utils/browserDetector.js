@@ -1,11 +1,12 @@
 /**
+ * Utility class to detect the current browser
  * Extracted from http://stackoverflow.com/questions/9847580/how-to-detect-safari-chrome-ie-firefox-and-opera-browser
  */
 
 class BrowserDetector {
 
     getBrowserType() {
-        if (this.isChrome()) {
+        if (this.isChrome() || this.isChromium()) {
             return "chrome";
         }
         if (this.isFirefox()) {
@@ -14,6 +15,16 @@ class BrowserDetector {
 
         //From extension's options, isChrome function does not work
         return "chrome";
+    }
+
+    //Chromium
+    isChromium() { // Actually, isWithChromiumPDFReader
+        if (navigator.plugins === undefined) {
+            return false;
+        }
+        for (var i = 0; i < navigator.plugins.length; i++)
+            if (navigator.plugins[i].name == 'Chromium PDF Viewer') return true;
+        return false;
     }
 
     // Opera 8.0+

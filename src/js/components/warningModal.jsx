@@ -1,7 +1,9 @@
 import React from 'react';
 import { Button, Header, Icon, Dimmer, Container } from 'semantic-ui-react'
-import ScrollController from '../utils/scrollController.js'
 import PropTypes from 'prop-types';
+
+import ScrollController from '../utils/scrollController.js'
+import LocalizationHelper from '../utils/localizationHelper.js'
 
 /**
  * A modal that blocks user interaction with the page
@@ -33,16 +35,16 @@ class WarningModal extends React.Component {
         return <Dimmer active={this.state.active}>
             <Header as="h2" icon inverted>
                 <Icon name="industry" />
-                Your are in production!
+                {this.props.translationService.getTranslatedMessage('warningModal_title')}
                 <Header.Subheader>
-                    Your actions may break the system. Be careful!
+                    {this.props.translationService.getTranslatedMessage('warningModal_description')}
                 </Header.Subheader>
             </Header>
             <Container>
-                <Button content="Go safe" icon="remove" basic color="red" inverted onClick={() => {
+                <Button content={this.props.translationService.getTranslatedMessage('warningModal_exit')} icon="remove" basic color="red" inverted onClick={() => {
                     this.props.onExit();
                 }} />
-                <Button content="Continue" color="green" icon="chevron right" labelPosition="right" inverted onClick={() => {
+                <Button content={this.props.translationService.getTranslatedMessage('warningModal_continue')} color="green" icon="chevron right" labelPosition="right" inverted onClick={() => {
                     this.handleClose();
                 }} />
             </Container>
@@ -71,7 +73,13 @@ WarningModal.propTypes = {
      * The default action is to disable scrolling.
      * @memberof WarningModal
      */
-    onShow: PropTypes.func
+    onShow: PropTypes.func,
+
+    /**
+     * @property {LocalizationHelper} translationService service that retrieves translations.
+     * @memberof WarningModal
+     */
+    translationService: PropTypes.object
 };
 
 WarningModal.defaultProps = {
@@ -83,7 +91,8 @@ WarningModal.defaultProps = {
     },
     onShow: () => {
         ScrollController.disableScroll();
-    }
+    },
+    translationService: LocalizationHelper
 };
 
 export default WarningModal;

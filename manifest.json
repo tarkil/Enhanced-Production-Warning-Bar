@@ -1,6 +1,7 @@
 {
   "name": "Production Warning Bar",
   "version": "0.1.1",
+  "default_locale": "en",
   "manifest_version": 2,
   "options_ui": {
     "page": "html/options.html",

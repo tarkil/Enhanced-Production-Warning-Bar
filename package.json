@@ -1,6 +1,6 @@
 {
   "name": "production-warning-bar",
-  "version": "0.1.2",
+  "version": "0.2.0-SNAPSHOT",
   "description": "A chrome extension that detects production pages",
   "dependencies": {
     "react": "~16.1.1",
@@ -47,8 +47,8 @@
     "eslint": "./node_modules/.bin/eslint src/js/**/*.js*",
     "eslint-fix": "./node_modules/.bin/eslint --fix src/js/**/*.js*",
     "watch": "./node_modules/.bin/webpack --config webpack.config.js --watch",
-    "build": " ./node_modules/.bin/webpack --config webpack.config.js",
-    "production": "./script/production.sh",
+    "build": "./node_modules/.bin/webpack --config webpack.config.js",
+    "production": "NODE_ENV=production ./node_modules/.bin/webpack --config webpack.config.js",
     "package": "npm run eslint && npm test && npm run production && zip package-$(cat package.json | jq -r .version).zip -r build html css img manifest.json",
     "doc": "node_modules/.bin/jsdoc -c jsdoc.json"
   },

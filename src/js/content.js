@@ -2,13 +2,13 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import WarningBar from './components/warningBar.jsx';
-import WarningModal from './components/warningModal.jsx'
 import injectTapEventPlugin from 'react-tap-event-plugin';
 
 import Url from './model/Url'
 import PreferencesManager from './utils/preferences.js';
-import ShadowDOM from 'react-shadow';
-import 'semantic-ui-css/semantic.min.css';
+
+
+import SemanticComponentsService from './services/semanticComponentsService'
 
 injectTapEventPlugin();
 
@@ -26,9 +26,9 @@ class Content {
 
     execute() {
         //Get the stored values
-        PreferencesManager.INSTANCE().loadPreferences((items) => {
-            for (let key in items.environments) {
-                var environment = items.environments[key];
+        PreferencesManager.INSTANCE().loadPreferences((config) => {
+            for (let key in config.environments) {
+                var environment = config.environments[key];
                 if (!this.found) {
                     PreferencesManager.INSTANCE().loadEnvironment(environment, (elements) => {
                         this.loadWarningComponents(elements);
@@ -40,15 +40,15 @@ class Content {
 
 
     loadWarningComponents(value) {
-        let items = value[Object.keys(value)[0]];
-        var noMatch = true;
+        const config = value[Object.keys(value)[0]];
+        let noMatch = true;
 
         //loop through domains and see if current domain is part of list
-        for (var key in items.domainList) {
-            let domain = items.domainList[key];
+        for (let key in config.domainList) {
+            let domain = config.domainList[key];
             const url = new Url(document.location);
             if (url.isFromDomain(domain) && noMatch) {
-                if (items.enableWarningBar) {
+                if (config.enableWarningBar) {
                     let blankSpace = Content.createHTMLElement('<div id="production-warning-blank-space"/>');
                     document.body.insertBefore(blankSpace, document.body.firstChild);
                     //create warning bar
@@ -59,54 +59,25 @@ class Content {
 
                     let productionWarningBar = document.getElementById('production-warning-all');
                     const barStyle = {
-                        'backgroundColor': items.barColor,
+                        'backgroundColor': config.barColor,
                         'filter': 'none !important'
                     };
 
                     ReactDOM.render(
                         <MuiThemeProvider>
-                            <WarningBar title={items.barText} style={barStyle} onClose={() => {
+                            <WarningBar title={config.barText} style={barStyle} onClose={() => {
                                 document.getElementById('production-warning-blank-space').setAttribute('style', `height: 0px`);
                             }} />
                         </MuiThemeProvider>, productionWarningBar);
                     document.getElementById('production-warning-blank-space').setAttribute('style', `height: ${productionWarningBar.clientHeight}px`);
                 }
 
-                if (items.enableWarningModal) {
-                    //Workaround to load icons and fonts http://robdodson.me/at-font-face-doesnt-work-in-shadow-dom/
-                    const eotFont = chrome.extension.getURL('build/js/icons.eot');
-                    const ttfFont = chrome.extension.getURL('build/js/icons.ttf');
-                    const svgFont = chrome.extension.getURL('build/js/icons.svg');
-
-                    var newStyle = document.createElement('style');
-                    newStyle.appendChild(document.createTextNode(`
-                    @font-face {
-                        font-family: 'Icons';
-                        src: url("${eotFont}");
-                        src: url("${eotFont}?#iefix") format('embedded-opentype'), url("${ttfFont}") format('truetype'), url("${svgFont}#icons") format('svg');
-                        font-style: normal;
-                        font-weight: normal;
-                        font-variant: normal;
-                        text-decoration: inherit;
-                        text-transform: none;
-                      }
-                    `));
-
-                    document.head.appendChild(newStyle);
-                    //--
-                    let container = Content.createHTMLElement('<div id="warning-modal-container"/>');
-                    document.body.appendChild(container);
-                    container = document.getElementById('warning-modal-container');
-                    ReactDOM.render(
-                        <ShadowDOM include={[chrome.extension.getURL('build/js/styles.css')]}>
-                            <div id="warning-modal">
-                                <WarningModal />
-                            </div>
-                        </ShadowDOM>, container);
+                if (config.enableWarningModal) {
+                    SemanticComponentsService.renderWarningModal();
                 }
 
-                if (items.filter !== "none") {
-                    document.getElementsByTagName('body')[0].style.filter = items.filter;
+                if (config.filter !== "none") {
+                    document.getElementsByTagName('body')[0].style.filter = config.filter;
                 }
                 //make sure only one bar is made
                 noMatch = false;
@@ -119,6 +90,7 @@ class Content {
      * @link http://stackoverflow.com/questions/814564/inserting-html-elements-with-javascript
      * @param {string} htmlStr the string to make into html element
      * @returns {DocumentFragment} DOM element
+     * @deprecated
      */
     static createHTMLElement(htmlStr) {
         let frag = document.createDocumentFragment(),

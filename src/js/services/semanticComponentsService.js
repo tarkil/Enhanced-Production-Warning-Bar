@@ -1,0 +1,97 @@
+
+import React from 'react';
+import ReactDOM from 'react-dom';
+import ShadowDOM from 'react-shadow';
+import WarningModal from '../components/warningModal.jsx'
+
+import 'semantic-ui-css/semantic.min.css';
+/**
+ * Create a new div element that is appended as a div element to body
+ * @param {string} htmlStr html element
+ * @param {string} id element id. By default, it is a random string
+ */
+function createHTMLElement(htmlStr, id = Math.random().toString(36).substring(7)) {
+    let frag = document.createDocumentFragment();
+    let newDiv = document.createElement('div');
+    newDiv.setAttribute('id', id);
+    newDiv.innerHTML = htmlStr;
+    let temp = document.createElement('div');
+    temp.innerHTML = newDiv.outerHTML;
+    while (temp.firstChild) {
+        frag.appendChild(temp.firstChild);
+    }
+    document.body.appendChild(frag);
+    return document.getElementById(id);
+}
+
+/**
+ * Load font-faces required by semantic-ui. This function is useful to load font faces, when you are using
+ * shadow dom. According to {@link http://robdodson.me/at-font-face-doesnt-work-in-shadow-dom/|this}, currently
+ * font faces are not working with shadow dom. 
+ */
+function loadFontFace() {
+    const eotFont = chrome.extension.getURL('build/js/icons.eot');
+    const ttfFont = chrome.extension.getURL('build/js/icons.ttf');
+    const svgFont = chrome.extension.getURL('build/js/icons.svg');
+
+    var newStyle = document.createElement('style');
+    newStyle.appendChild(document.createTextNode(`
+                        @font-face {
+                            font-family: 'Icons';
+                            src: url("${eotFont}");
+                            src: url("${eotFont}?#iefix") format('embedded-opentype'), url("${ttfFont}") format('truetype'), url("${svgFont}#icons") format('svg');
+                            font-style: normal;
+                            font-weight: normal;
+                            font-variant: normal;
+                            text-decoration: inherit;
+                            text-transform: none;
+                          }
+                        `));
+
+    document.head.appendChild(newStyle);
+}
+
+/**
+ * Decorator used to not duplicate the definition of font face
+ * @param {*} target The class that the member is on.
+ * @param {*} name The name of the member in the class
+ * @param {*} descriptor The member descriptor. The function that is being annotated in this case
+ */
+function includeFontFace(target, name, descriptor) {
+    const original = descriptor.value;
+    if (typeof original === 'function') {
+        descriptor.value = function (...args) {
+            if (this.fontFacesIncluded !== true) {
+                this.fontFacesIncluded = true;
+                loadFontFace();
+            }
+            try {
+                const result = original.apply(this, args);
+                return result;
+            } catch (e) {
+                console.error(`Error: ${e}`);
+                throw e;
+            }
+        }
+    }
+    return descriptor;
+}
+
+/**
+ * A service that renders components created with semantic-ui
+ */
+class SemanticComponentsService {
+
+    @includeFontFace
+    renderWarningModal() {
+        const container = createHTMLElement('');
+        ReactDOM.render(
+            <ShadowDOM include={[chrome.extension.getURL('build/js/styles.css')]}>
+                <div id="warning-modal">
+                    <WarningModal />
+                </div>
+            </ShadowDOM>, container);
+    }
+}
+
+export default new SemanticComponentsService();

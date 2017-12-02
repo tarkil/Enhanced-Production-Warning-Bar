@@ -3,6 +3,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import ShadowDOM from 'react-shadow';
 import WarningModal from '../components/warningModal.jsx'
+import ExtensionHelper from '../utils/extensionHelper'
 
 import 'semantic-ui-css/semantic.min.css';
 /**
@@ -30,9 +31,9 @@ function createHTMLElement(htmlStr, id = Math.random().toString(36).substring(7)
  * font faces are not working with shadow dom. 
  */
 function loadFontFace() {
-    const eotFont = chrome.extension.getURL('build/js/icons.eot');
-    const ttfFont = chrome.extension.getURL('build/js/icons.ttf');
-    const svgFont = chrome.extension.getURL('build/js/icons.svg');
+    const eotFont = ExtensionHelper.getURL('build/js/icons.eot');
+    const ttfFont = ExtensionHelper.getURL('build/js/icons.ttf');
+    const svgFont = ExtensionHelper.getURL('build/js/icons.svg');
 
     var newStyle = document.createElement('style');
     newStyle.appendChild(document.createTextNode(`
@@ -82,12 +83,15 @@ function includeFontFace(target, name, descriptor) {
  */
 class SemanticComponentsService {
 
+    /**
+     * Render a warning modal using shadow dom
+     */
     @includeFontFace
     renderWarningModal() {
         const container = createHTMLElement('');
         ReactDOM.render(
-            <ShadowDOM include={[chrome.extension.getURL('build/js/styles.css')]}>
-                <div id="warning-modal">
+            <ShadowDOM include={[ExtensionHelper.getURL('build/js/styles.css')]}>
+                <div>
                     <WarningModal />
                 </div>
             </ShadowDOM>, container);

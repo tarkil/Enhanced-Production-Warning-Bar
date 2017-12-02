@@ -1,0 +1,16 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SemanticComponentsService Modal is rendered as a shadow dom subtree 1`] = `
+"<head><style>
+                        @font-face {
+                            font-family: 'Icons';
+                            src: url(\\"build/js/icons.eot\\");
+                            src: url(\\"build/js/icons.eot?#iefix\\") format('embedded-opentype'), url(\\"build/js/icons.ttf\\") format('truetype'), url(\\"build/js/icons.svg#icons\\") format('svg');
+                            font-style: normal;
+                            font-weight: normal;
+                            font-variant: normal;
+                            text-decoration: inherit;
+                            text-transform: none;
+                          }
+                        </style></head><body><div id=\\"vxz01wnfm11cwlvxi529\\"><div class=\\"resolving\\"><fake-boundary><div class=\\"ui active transition visible dimmer\\"><div class=\\"content\\"><div class=\\"center\\"><h2 class=\\"ui icon inverted header\\"><i aria-hidden=\\"true\\" class=\\"industry icon\\"></i>warningModal_title<div class=\\"sub header\\">warningModal_description</div></h2><div class=\\"ui container\\"><button class=\\"ui red basic inverted button\\" role=\\"button\\"><i aria-hidden=\\"true\\" class=\\"remove icon\\"></i>warningModal_exit</button><button class=\\"ui green icon inverted right labeled button\\" role=\\"button\\"><i aria-hidden=\\"true\\" class=\\"chevron right icon\\"></i>warningModal_continue</button></div></div></div></div></fake-boundary></div></div></body>"
+`;

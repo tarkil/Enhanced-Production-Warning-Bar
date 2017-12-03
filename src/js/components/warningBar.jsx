@@ -13,19 +13,19 @@ class WarningBar extends React.Component {
         };
     }
 
-    render () {
+    render() {
         if (this.state.show) {
             return <AppBar
-                title={ this.props.title }
+                title={this.props.title}
                 iconClassNameRight="muidocs-icon-navigation-expand-more"
-                style={ this.props.style }
-                iconElementLeft={ <IconButton onClick={ () => {
-                                                                if (!this.props.disableClose) {
-                                                                    this.setState({ show: false });
-                                                                    this.props.onClose();
-                                                                }
-                                                            }
-                                                    }
+                style={this.props.style}
+                iconElementLeft={<IconButton onClick={() => {
+                    if (!this.props.disableClose) {
+                        this.setState({ show: false });
+                        this.props.onClose();
+                    }
+                }
+                }
                 ><NavigationClose /></IconButton>}
             />;
         }
@@ -35,12 +35,19 @@ class WarningBar extends React.Component {
 
 WarningBar.propTypes = {
     onClose: PropTypes.func,
-    disableClose: PropTypes.bool
+    disableClose: PropTypes.bool,
+    style: PropTypes.object,
+    title: PropTypes.string
 };
 
 WarningBar.defaultProps = {
     onClose: () => { },
-    disableClose: false
+    disableClose: false,
+    style: {
+        'backgroundColor': 'red',
+        'filter': 'none !important'
+    },
+    title: 'Production warning bar'
 };
 
 export default WarningBar;

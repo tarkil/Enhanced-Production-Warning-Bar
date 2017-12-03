@@ -18,6 +18,7 @@
         "react",
         "json"
     ],
+    "parser": "babel-eslint",
     "rules": {
         "react/jsx-uses-vars": 1,
         "accessor-pairs": "error",
@@ -69,7 +70,9 @@
         "func-style": [
             "error",
             "declaration",
-            { "allowArrowFunctions": true }
+            {
+                "allowArrowFunctions": true
+            }
         ],
         "generator-star-spacing": "error",
         "global-require": "error",
@@ -109,7 +112,14 @@
         "no-catch-shadow": "error",
         "no-confusing-arrow": "error",
         "no-continue": "error",
-        "no-console": ["error", { "allow": ["error"] }],
+        "no-console": [
+            "error",
+            {
+                "allow": [
+                    "error"
+                ]
+            }
+        ],
         "no-div-regex": "error",
         "no-duplicate-imports": "error",
         "no-else-return": "error",

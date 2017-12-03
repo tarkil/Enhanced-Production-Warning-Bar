@@ -39,39 +39,39 @@ class Preferences extends React.Component {
     createListItems(items) {
         var listItems = [];
         const iconButtonElement =
-                <IconButton
-                    touch={true}
-                    tooltip="more"
-                    tooltipPosition="bottom-left"
-                >
-                    <MoreVertIcon color={grey400}/>
-                </IconButton>;
+            <IconButton
+                touch={true}
+                tooltip="more"
+                tooltipPosition="bottom-left"
+            >
+                <MoreVertIcon color={grey400} />
+            </IconButton>;
 
         items.forEach((item) => {
             listItems.push(<MenuItem
-                key={ item }
-                rightIconButton={ <IconMenu iconButtonElement={iconButtonElement}>
-                                        <MenuItem disabled={ true } onClick={ () => {
+                key={item}
+                rightIconButton={<IconMenu iconButtonElement={iconButtonElement}>
+                    <MenuItem disabled={true} onClick={() => {
 
-                                                    }
-                                         }>Edit</MenuItem>
-                                        <MenuItem onClick={ () => {
-                                                    this.props.onDeleteEnvironment(item);
-                                                    }
-                                                }
-                                                disabled={ this.props.currentEnvironment === item}
-                                        >Delete</MenuItem>
-                                    </IconMenu>
-                        }
-                primaryText={ <div onClick={ () => {
-                            this.props.onChangeEnvironment(item);
-                            this.setState({ showDrawer: false });
-                        }
-                    }>{item}</div>
                     }
+                    }>Edit</MenuItem>
+                    <MenuItem onClick={() => {
+                        this.props.onDeleteEnvironment(item);
+                    }
+                    }
+                        disabled={this.props.currentEnvironment === item}
+                    >Delete</MenuItem>
+                </IconMenu>
+                }
+                primaryText={<div onClick={() => {
+                    this.props.onChangeEnvironment(item);
+                    this.setState({ showDrawer: false });
+                }
+                }>{item}</div>
+                }
 
             />);
-            listItems.push(<Divider key={ `divider-${item}` } inset={true}/>);
+            listItems.push(<Divider key={`divider-${item}`} inset={true} />);
         });
 
         return listItems;
@@ -83,19 +83,21 @@ class Preferences extends React.Component {
             <FlatButton
                 label="Cancel"
                 primary={true}
-                onTouchTap={ () => {
-                        this.setState({ showNewEnvironmentDialog: false });
-                    } }
+                onTouchTap={() => {
+                    this.setState({ showNewEnvironmentDialog: false });
+                }}
+                key="cancel"
             />,
             <FlatButton
                 label="Submit"
-                primary={ true }
-                disabled={ this.state.newEnvironment.trim().length === 0 }
+                primary={true}
+                disabled={this.state.newEnvironment.trim().length === 0}
                 onTouchTap={() => {
-                        this.props.onNewEnvironment( this.state.newEnvironment );
-                        this.setState({ showNewEnvironmentDialog: false });
-                     }
-                 }
+                    this.props.onNewEnvironment(this.state.newEnvironment);
+                    this.setState({ showNewEnvironmentDialog: false });
+                }
+                }
+                key="submit"
             />
         ];
         const listItems = this.createListItems(this.props.environments);
@@ -103,62 +105,64 @@ class Preferences extends React.Component {
         return (
             <div>
                 <StickyContainer>
-                    <Sticky stickyStyle={ stickyStyle }>
-                       { () =>
-                       <AppBar title={ <FormattedMessage
-                                        id="preferencesPage.title"
-                                        defaultMessage="Enhanced Production Warning Bar Preferences - {name}"
-                                        description="This translation is created inline of the code"
-                                        values={ { name: this.props.currentEnvironment } }
-                                      />
-                                  }
+                    <Sticky stickyStyle={stickyStyle}>
+                        {() =>
+                            <AppBar title={<FormattedMessage
+                                id="preferencesPage.title"
+                                defaultMessage="Enhanced Production Warning Bar Preferences - {name}"
+                                description="This translation is created inline of the code"
+                                values={{ name: this.props.currentEnvironment }}
+                            />
+                            }
 
-                                iconElementRight={ <FlatButton label={ <FormattedMessage
-                                        id="preferencesPage.save"
-                                        defaultMessage="Save"
-                                        description="Save environment's preferences"
-                                        values={ { name: this.props.currentEnvironment } }
-                                      />
-                                  }
-                                            onClick={ (event) => {
-                                                        event.preventDefault();
-                                                        this.props.onSaveClick();
-                                                        }
-                                                    } />
-                                            }
-                                iconElementLeft={ <IconButton label="Menu"
-                                        onClick={ () => {
-                                                 this.setState({ showDrawer: true });
-                                               }}>
-                                                <NavigationMenu/>
-                                               </IconButton> }
-                        />
-                     }
+                                iconElementRight={<FlatButton label={<FormattedMessage
+                                    id="preferencesPage.save"
+                                    defaultMessage="Save"
+                                    description="Save environment's preferences"
+                                    values={{ name: this.props.currentEnvironment }}
+                                />
+                                }
+                                    onClick={(event) => {
+                                        event.preventDefault();
+                                        this.props.onSaveClick();
+                                    }
+                                    } />
+                                }
+                                iconElementLeft={<IconButton label="Menu"
+                                    onClick={() => {
+                                        this.setState({ showDrawer: true });
+                                    }}>
+                                    <NavigationMenu />
+                                </IconButton>}
+                            />
+                        }
                     </Sticky>
                     <WarningBarPreferences />
                     <ModalPreferences />
                     <WebFilterPreferences />
                     <DomainListContainer />
                 </StickyContainer>
-                <Drawer open={ this.state.showDrawer } >
+                <Drawer open={this.state.showDrawer} >
                     <AppBar title="Environments"
-                            iconElementLeft={ <div/> }
-                            iconElementRight={ <IconButton label="Menu"
-                                onClick={ () => {
-                                         this.setState({ showDrawer: false });
-                                        }
-                                }>
-                                    <NavigationClose/>
-                                </IconButton>
+                        iconElementLeft={<div />}
+                        iconElementRight={<IconButton label="Menu"
+                            onClick={() => {
+                                this.setState({ showDrawer: false });
                             }
+                            }>
+                            <NavigationClose />
+                        </IconButton>
+                        }
                     />
-                    { listItems }
-                    <MenuItem rightIcon={ <ContentAdd/> }
-                        onClick={ () => {
-                                            this.setState({ showNewEnvironmentDialog: true,
-                                                            showDrawer: false });
-                                        }
-                                }>New context</MenuItem>
+                    {listItems}
+                    <MenuItem rightIcon={<ContentAdd />}
+                        onClick={() => {
+                            this.setState({
+                                showNewEnvironmentDialog: true,
+                                showDrawer: false
+                            });
+                        }
+                        }>New context</MenuItem>
                     <Dialog
                         title="Add new environment"
                         actions={actions}
@@ -167,11 +171,11 @@ class Preferences extends React.Component {
                     >
                         <TextField
                             id="text-field-controlled"
-                            value={ this.state.newEnvironment }
-                            onChange={ (event) => {
-                                        this.setState({ newEnvironment: event.target.value } );
-                                    }
-                                }
+                            value={this.state.newEnvironment}
+                            onChange={(event) => {
+                                this.setState({ newEnvironment: event.target.value });
+                            }
+                            }
                         />
                     </Dialog>
                 </Drawer>
@@ -184,7 +188,9 @@ Preferences.propTypes = {
     onSaveClick: PropTypes.func.isRequired,
     onNewEnvironment: PropTypes.func.isRequired,
     environments: PropTypes.array.isRequired,
-    currentEnvironment: PropTypes.string.isRequired
+    currentEnvironment: PropTypes.string.isRequired,
+    onDeleteEnvironment: PropTypes.func.isRequired,
+    onChangeEnvironment: PropTypes.func.isRequired
 };
 
 const mapStateToProps = (state) => ({
@@ -193,19 +199,19 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-        onSaveClick: () => {
-            dispatch(savePreferences());
-        },
-        onNewEnvironment: (name) => {
-            dispatch(addEnvironment(name));
-        },
-        onDeleteEnvironment: (name) => {
-            dispatch(removeEnvironment(name));
-        },
-        onChangeEnvironment: (name) => {
-            dispatch(changeEnvironment(name));
-        }
-    });
+    onSaveClick: () => {
+        dispatch(savePreferences());
+    },
+    onNewEnvironment: (name) => {
+        dispatch(addEnvironment(name));
+    },
+    onDeleteEnvironment: (name) => {
+        dispatch(removeEnvironment(name));
+    },
+    onChangeEnvironment: (name) => {
+        dispatch(changeEnvironment(name));
+    }
+});
 
 
 const PreferencesPage = connect(

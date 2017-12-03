@@ -36,17 +36,23 @@ class ScrollController {
         if (!this.scrollEnable) {
             return;
         }
-        if (window.addEventListener) { // older FF
+        // older FF
+        if (window.addEventListener) {
             window.addEventListener('DOMMouseScroll', this.preventDefault, false);
         }
-        window.onwheel = this.preventDefault; // modern standard
-        window.onmousewheel = document.onmousewheel = ScrollController.preventDefault; // older browsers, IE
-        window.ontouchmove = this.preventDefault; // mobile
+        // modern standard
+        window.onwheel = this.preventDefault;
+        // older browsers, IE
+        window.onmousewheel = document.onmousewheel = ScrollController.preventDefault;
+        // mobile
+        window.ontouchmove = this.preventDefault;
         document.onkeydown = this.preventDefaultForScrollKeys;
         //Disable browser scrollbars
         this.scrollPreviousConfigForChromeAndFirefox = document.documentElement.style.overflow;
-        document.documentElement.style.overflow = 'hidden'; // firefox, chrome
-        document.body.scroll = "no"; // ie only
+        // firefox, chrome
+        document.documentElement.style.overflow = 'hidden';
+        // ie only
+        document.body.scroll = "no";
         this.scrollEnable = false;
         //Scroll page to the top left
         window.scrollTo(0, 0);
@@ -63,9 +69,11 @@ class ScrollController {
         window.onwheel = null;
         window.ontouchmove = null;
         document.onkeydown = null;
-        //Enable browser scrollbars
-        document.documentElement.style.overflow = this.scrollPreviousConfigForChromeAndFirefox; // firefox, chrome
-        document.body.scroll = "yes"; // ie only
+        // Enable browser scrollbars
+        // firefox, chrome
+        document.documentElement.style.overflow = this.scrollPreviousConfigForChromeAndFirefox;
+        // ie only
+        document.body.scroll = "yes";
         this.scrollEnable = true;
     }
 }

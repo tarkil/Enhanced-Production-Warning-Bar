@@ -54,30 +54,32 @@ class DomainList extends React.Component {
                 tooltip="more"
                 tooltipPosition="bottom-left"
             >
-                <MoreVertIcon color={grey400}/>
+                <MoreVertIcon color={grey400} />
             </IconButton>
-        ;
+            ;
 
         items.forEach((item) => {
             listItems.push(<ListItem
-                key={ item }
-                leftAvatar={ <ContentLink/> }
-                rightIconButton={ <IconMenu iconButtonElement={iconButtonElement}>
-                                        <MenuItem onClick={ () => {
-                                                    this.setState({ showNewDomain: true,
-                                                                    urlText: item,
-                                                                    oldUrlText: item });
-                                                    }
-                                         }>Edit</MenuItem>
-                                        <MenuItem onClick={ () => {
-                                            this.props.onRemoveDomain(item);
-                                            }
-                                        }>Delete</MenuItem>
-                                    </IconMenu>
-                        }
-                primaryText={ item }
+                key={item}
+                leftAvatar={<ContentLink />}
+                rightIconButton={<IconMenu iconButtonElement={iconButtonElement}>
+                    <MenuItem onClick={() => {
+                        this.setState({
+                            showNewDomain: true,
+                            urlText: item,
+                            oldUrlText: item
+                        });
+                    }
+                    }>Edit</MenuItem>
+                    <MenuItem onClick={() => {
+                        this.props.onRemoveDomain(item);
+                    }
+                    }>Delete</MenuItem>
+                </IconMenu>
+                }
+                primaryText={item}
             />);
-            listItems.push(<Divider key={ `divider-${item}` } inset={true}/>);
+            listItems.push(<Divider key={`divider-${item}`} inset={true} />);
         });
 
         return listItems;
@@ -89,12 +91,14 @@ class DomainList extends React.Component {
                 label="Cancel"
                 primary={true}
                 onTouchTap={this.handleClose}
+                key="cancel"
             />,
             <FlatButton
                 label="Submit"
-                primary={ true }
-                disabled={ this.state.urlText.trim().length === 0 }
+                primary={true}
+                disabled={this.state.urlText.trim().length === 0}
                 onTouchTap={this.handleAddDomain}
+                key="submit"
             />
         ];
 
@@ -102,26 +106,28 @@ class DomainList extends React.Component {
         const listItems = this.createListItems(urls);
         return (
             <Card
-                onExpandChange={ () => {
-                    this.setState({ showNewDomain: true,
+                onExpandChange={() => {
+                    this.setState({
+                        showNewDomain: true,
                         urlText: "",
-                        oldUrlText: "" });
-                    }
+                        oldUrlText: ""
+                    });
+                }
                 }>
                 <CardHeader
                     title="Domain List"
                     subtitle="Production environment's domain"
                     avatar="../img/svg/network-offline.svg"
-                    actAsExpander={ true }
-                    showExpandableButton={ true }
-                    closeIcon={ <ContentAdd>
-                    </ContentAdd> }
-                    openIcon={ <ContentAdd>
-                    </ContentAdd> }
+                    actAsExpander={true}
+                    showExpandableButton={true}
+                    closeIcon={<ContentAdd>
+                    </ContentAdd>}
+                    openIcon={<ContentAdd>
+                    </ContentAdd>}
                 />
                 <CardText>
                     <List>
-                        { listItems }
+                        {listItems}
                     </List>
                     <Dialog
                         title="Add production domain"
@@ -131,11 +137,11 @@ class DomainList extends React.Component {
                     >
                         <TextField
                             id="text-field-controlled"
-                            value={ this.state.urlText }
-                            onChange={ (event) => {
-                                        this.setState({ urlText: event.target.value });
-                                    }
-                                }
+                            value={this.state.urlText}
+                            onChange={(event) => {
+                                this.setState({ urlText: event.target.value });
+                            }
+                            }
                         />
                     </Dialog>
                 </CardText>

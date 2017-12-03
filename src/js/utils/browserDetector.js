@@ -18,12 +18,16 @@ class BrowserDetector {
     }
 
     //Chromium
-    isChromium() { // Actually, isWithChromiumPDFReader
-        if (navigator.plugins === undefined) {
+    isChromium() {
+        // Actually, isWithChromiumPDFReader
+        if (typeof navigator.plugins === 'undefined') {
             return false;
         }
-        for (var i = 0; i < navigator.plugins.length; i++)
-            if (navigator.plugins[i].name == 'Chromium PDF Viewer') return true;
+        for (let counter = 0; counter < navigator.plugins.length; counter += 1) {
+            if (navigator.plugins[counter].name === 'Chromium PDF Viewer') {
+                return true;
+            }
+        }
         return false;
     }
 

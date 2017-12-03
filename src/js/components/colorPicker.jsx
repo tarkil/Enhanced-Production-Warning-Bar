@@ -6,11 +6,11 @@ import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
 import EditorFormatColorFill from 'material-ui/svg-icons/editor/format-color-fill';
 import { fullWhite } from 'material-ui/styles/colors';
-
+import PropTypes from 'prop-types';
 
 class ColorPicker extends React.Component {
 
-    constructor (props) {
+    constructor(props) {
         super(props);
         this.state = {
             displayColorPicker: false
@@ -22,32 +22,32 @@ class ColorPicker extends React.Component {
     }
 
 
-    handleChangeComplete (newColor) {
+    handleChangeComplete(newColor) {
         this.setState({ color: newColor.hex });
     }
 
-    handleClick () {
+    handleClick() {
         this.setState({
             displayColorPicker: !this.state.displayColorPicker,
             color: this.props.color
         })
     }
 
-    handleAccept () {
+    handleAccept() {
         this.setState({
             displayColorPicker: false
         });
         this.props.onColorChange(this.state.color);
     }
 
-    handleClose () {
+    handleClose() {
         this.setState({
             displayColorPicker: false,
             color: this.props.color
         });
     }
 
-    render () {
+    render() {
         const style = {
             margin: 12
         };
@@ -59,40 +59,47 @@ class ColorPicker extends React.Component {
 
         const actions = [
             <FlatButton
+                key="cancel"
                 label="Cancel"
-                primary={ true }
-                onTouchTap={ this.handleClose }
+                primary={true}
+                onTouchTap={this.handleClose}
             />,
             <FlatButton
+                key="submit"
                 label="Submit"
-                primary={ true }
-                keyboardFocused={ true }
-                onTouchTap={ this.handleAccept }
+                primary={true}
+                keyboardFocused={true}
+                onTouchTap={this.handleAccept}
             />
         ];
 
-         return (
+        return (
             <div>
                 <label alt="Choose colour">Colour:</label>
                 <RaisedButton
-                    backgroundColor={ this.props.color}
-                    style={ style }
-                    icon={ <EditorFormatColorFill color={fullWhite} /> }
-                    onClick={ this.handleClick }
+                    backgroundColor={this.props.color}
+                    style={style}
+                    icon={<EditorFormatColorFill color={fullWhite} />}
+                    onClick={this.handleClick}
                 />
                 <Dialog
                     title="Choose color"
-                    actions={ actions }
-                    modal={ false }
-                    open={ this.state.displayColorPicker }
-                    contentStyle={ customDialogStyle }
-                    onRequestClose={ this.handleClose }>
-                    <ChromePicker color= { this.state.color} onChangeComplete={ this.handleChangeComplete }/>
+                    actions={actions}
+                    modal={false}
+                    open={this.state.displayColorPicker}
+                    contentStyle={customDialogStyle}
+                    onRequestClose={this.handleClose}>
+                    <ChromePicker color={this.state.color} onChangeComplete={this.handleChangeComplete} />
                 </Dialog>
             </div>
         );
     }
 
 }
+
+ColorPicker.propTypes = {
+    color: PropTypes.string,
+    onColorChange: PropTypes.func
+};
 
 export default ColorPicker;

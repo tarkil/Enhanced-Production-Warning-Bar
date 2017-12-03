@@ -13,6 +13,7 @@ class FirefoxLocalizationService {
 }
 
 class FakeLocalizationService {
+    // eslint-disable-next-line no-unused-vars
     getTranslatedMessage(code, parameters = []) {
         return code;
     }

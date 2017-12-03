@@ -6,12 +6,14 @@ import WarningModal from '../components/warningModal.jsx'
 import ExtensionHelper from '../utils/extensionHelper'
 
 import 'semantic-ui-css/semantic.min.css';
+
 /**
  * Create a new div element that is appended as a div element to body
  * @param {string} htmlStr html element
- * @param {string} id element id. By default, it is a random string
+ * @param {string} id element id
+ * @returns {element} created element
  */
-function createHTMLElement(htmlStr, id = Math.random().toString(36).substring(7)) {
+function createHTMLElement(htmlStr, id) {
     let frag = document.createDocumentFragment();
     let newDiv = document.createElement('div');
     newDiv.setAttribute('id', id);
@@ -28,7 +30,8 @@ function createHTMLElement(htmlStr, id = Math.random().toString(36).substring(7)
 /**
  * Load font-faces required by semantic-ui. This function is useful to load font faces, when you are using
  * shadow dom. According to {@link http://robdodson.me/at-font-face-doesnt-work-in-shadow-dom/|this}, currently
- * font faces are not working with shadow dom. 
+ * font faces are not working with shadow dom.
+ * @returns {void}
  */
 function loadFontFace() {
     const eotFont = ExtensionHelper.getURL('build/js/icons.eot');
@@ -57,6 +60,7 @@ function loadFontFace() {
  * @param {*} target The class that the member is on.
  * @param {*} name The name of the member in the class
  * @param {*} descriptor The member descriptor. The function that is being annotated in this case
+ * @returns {function} wrapped original function
  */
 function includeFontFace(target, name, descriptor) {
     const original = descriptor.value;
@@ -67,11 +71,11 @@ function includeFontFace(target, name, descriptor) {
                 loadFontFace();
             }
             try {
-                const result = original.apply(this, args);
+                const result = Reflect.apply(original, this, args);
                 return result;
-            } catch (e) {
-                console.error(`Error: ${e}`);
-                throw e;
+            } catch (exception) {
+                console.error(`Error: ${exception}`);
+                throw exception;
             }
         }
     }
@@ -85,10 +89,13 @@ class SemanticComponentsService {
 
     /**
      * Render a warning modal using shadow dom
+     * @param {string} id element id
+     * @returns {void}
      */
     @includeFontFace
-    renderWarningModal() {
-        const container = createHTMLElement('');
+    renderWarningModal(id = Math.random().toString(36).
+        substring(7)) {
+        const container = createHTMLElement('', id);
         ReactDOM.render(
             <ShadowDOM include={[ExtensionHelper.getURL('build/js/styles.css')]}>
                 <div>

@@ -13,7 +13,7 @@ describe('SemanticComponentsService', () => {
 
     it('Modal is rendered as a shadow dom subtree', () => {
         //When we render a warning modal
-        SemanticComponentsService.renderWarningModal();
+        SemanticComponentsService.renderWarningModal('test');
         //We expect that it is rendered as shadow dom
         expect(document.documentElement.innerHTML).toMatchSnapshot();
     });
